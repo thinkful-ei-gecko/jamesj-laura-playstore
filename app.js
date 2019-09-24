@@ -11,7 +11,7 @@ app.get('/apps', (req,res) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   let filteredPlaystore = [...playstore];
-  const genre = req.query.genre ? req.query.genre.toLowerCase() : '';
+  const genre = req.query.genre.toLowerCase();
   const capitalGenre = capitalizeFirstLetter(genre);
   const genreOptions = ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card']
   if(capitalGenre && genreOptions.includes(capitalGenre)){
