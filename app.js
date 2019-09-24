@@ -11,6 +11,16 @@ app.get('/apps', (req,res) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   let filteredPlaystore = [...playstore];
+  const genre = req.query.genre ? req.query.genre.toLowerCase() : '';
+  const capitalGenre = capitalizeFirstLetter(genre);
+  const genreOptions = ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card']
+  if(capitalGenre && genreOptions.includes(capitalGenre)){
+    filteredPlaystore = filteredPlaystore.filter(app => {
+      return app.Genres.includes(capitalGenre);
+    });
+  }
+
+  //handle sorting parameter
   const sortOptions = ['Rating','App'];
   const sort = req.query.sort ? req.query.sort.toLowerCase() : '';
   const capitalSort = capitalizeFirstLetter(sort);
